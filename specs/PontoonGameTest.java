@@ -210,6 +210,34 @@ public class PontoonGameTest {
     assertEquals(false, game.checkForUserFCT());
   }
 
+  @Test
+  public void testInitialCheck_BothPontoon() {
+    game.getAppPlayer().getHand().addCard(aceOfDiamonds);
+    game.getAppPlayer().getHand().addCard(kingOfClubs);
+    game.getUserPlayer().getHand().addCard(aceOfDiamonds);
+    game.getUserPlayer().getHand().addCard(kingOfClubs);
+    assertEquals("You both have Pontoon. \nDealer wins.", game.playInitialCheck());
+  }
+
+  // @Test
+  // public void testInitialCheck_AppPontoon() {
+  //   game.getAppPlayer().getHand().addCard(aceOfDiamonds);
+  //   game.getAppPlayer().getHand().addCard(kingOfClubs);
+  //   game.getUserPlayer().getHand().addCard(kingOfClubs);
+  //   game.getUserPlayer().getHand().addCard(sevenOfSpades);
+  //   assertEquals("You have 17. \nDealer has Pontoon. \nDealer wins.", game.playInitialCheck());
+  // }
+
+  // @Test
+  // public void testInitialCheck_UserPontoon() {
+
+  // }
+
+  // @Test
+  // public void testInitialCheck_NeitherPontoon() {
+
+  // }
+
 
 
 
@@ -324,22 +352,6 @@ public class PontoonGameTest {
   //   game.getPlayer(1).getHand().addCard(kingOfClubs);
   //   game.getPlayer(1).getHand().addCard(kingOfClubs);
   //   assertEquals(null, game.checkForWinner());
-  // }
-
-  // @Test
-  // public void canCheckForPontoon_Pontoon() {
-  //   game.addPlayer("Dealer0");
-  //   game.getPlayer(0).getHand().addCard(aceOfDiamonds);
-  //   game.getPlayer(0).getHand().addCard(kingOfClubs);
-  //   assertEquals(true, game.checkForPontoon(0));
-  // }
-
-  // @Test
-  // public void canCheckForPontoon_NoPontoon() {
-  //   game.addPlayer("Dealer0");
-  //   game.getPlayer(0).getHand().addCard(sixOfClubs);
-  //   game.getPlayer(0).getHand().addCard(kingOfClubs);
-  //   assertEquals(false, game.checkForPontoon(0));
   // }
 
 }

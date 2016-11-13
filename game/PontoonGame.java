@@ -124,78 +124,33 @@ public class PontoonGame {
     return fiveCardTrick;
   }
 
+  public void playInitialDeal() {
+    deal(2);
+  }
 
+  public String playInitialCheck() {
 
+    boolean appPontoon = checkForAppPontoon();
+    boolean userPontoon = checkForUserPontoon();
+    int appValue = getAppHandValue();
+    int userValue = getUserHandValue();
+    
+    String resultBothPontoon = "You both have Pontoon. \nDealer wins.";
+    String resultAppPontoon = "You have " + userValue + ". \nDealer has Pontoon. \nDealer wins.";
+    String resultUserPontoon = "You have Pontoon. \nDealer has " + appValue + ". \nYou win!";
 
+    if ( appPontoon && userPontoon ) {
+      return resultBothPontoon;
+    }
+    else if ( appPontoon && !userPontoon) {
+      return resultAppPontoon;
+    }
+    else if ( !appPontoon && userPontoon) {
+      return resultUserPontoon;
+    }
+    return null;
+  }
 
-  // public void stickOrTwist(int playerIndex, String playerDecision) {
-  //   if (playerDecision == "t") {
-  //     Card dealtCard = this.gameDeck.removeFirstCard();
-  //     getPlayer(playerIndex).getHand().addCard(dealtCard);
-  //   }
-  //   return;
-  // }
-
-  // public boolean checkForBust(int playerIndex) {
-  //   return getHandValueForPlayer(playerIndex) > 21;
-  // }
-
-  // public boolean checkForPontoon(int playerIndex) {
-  //   return getHandValueForPlayer(playerIndex) == 21;
-  // }
-
-  // public Player checkForPontoonOrBust() {
-  //   if (checkForPontoon(0) && checkForPontoon(1)) {
-  //     // "You both have Pontoon! It's a draw."
-  //     System.out.println()
-  //     // Show dealer cards
-  //     // "Play again?" y/n
-  //     // Start again or end
-  //   }
-  //   else if (checkforPontoon(0) || checkforPontoon(1)) {
-  //     // if loop for player or dealer Pontoon
-  //       // if player Pontoon:
-  //       // "You have Pontoon! You win!"
-  //       // else if dealer Pontoon:
-  //       // "Dealer has Pontoon! Dealer wins!"
-  //       // Then (for both):
-  //       // Show dealer cards
-  //       // "Play again?" y/n
-  //       // Start again or end
-  //   }
-  //   else if (checkForBust(0) && checkForBust(1)) {
-  //     // "You're both bust! Nobody wins."
-  //     // Show dealer cards
-  //     // "Play again" y/n
-  //     // Start again or end
-  //   }
-  //   else if (checkForBust(0) || checkForBust(1)) {
-  //     // if loop for player or dealer bust
-  //       // if player bust:
-  //         // "You're bust! Dealer wins!"
-  //       // if dealer bust:
-  //         // "Dealer's bust! You win!"
-  //       // Then (for both):
-  //         // Show dealer cards
-  //         // Play again, etc.
-  //   }
-  //     for (Player player : this.players) {
-  //       int index = this.players.indexOf(player);
-  //       if (checkForBust(index) != true) {
-  //         return player;
-  //       }
-  //     }
-  //   }
-  //   else {
-  //     if (getHandValueForPlayer(0) > getHandValueForPlayer(1)) {
-  //       return getPlayer(0);
-  //     }
-  //     else if (getHandValueForPlayer(0) < getHandValueForPlayer(1)) {
-  //       return getPlayer(1);
-  //     }
-  //   }
-  //   return null;
-  // }
 
 
 
