@@ -6,7 +6,7 @@ public class PontoonGame {
   private Player appPlayer;
   private Player userPlayer;
   private Deck deck;
-  private HandValuer handValuer;
+  private PontoonHandValuer handValuer;
 
   public PontoonGame () {
     this.appPlayer = new Player("AppPlayer", true);
@@ -49,6 +49,14 @@ public class PontoonGame {
       }
     }
   }
+
+  public boolean checkForAppPontoon() {
+    Hand appHand = this.appPlayer.getHand();
+    boolean pontoon = this.handValuer.checkForPontoon(appHand);
+    return pontoon;
+  }
+
+
 
   // public int getHandValueForPlayer(int playerIndex) {
   //   Player player = getPlayer(playerIndex);

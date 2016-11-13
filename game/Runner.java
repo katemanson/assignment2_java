@@ -7,6 +7,7 @@ public class Runner {
 
     PontoonGame game = new PontoonGame();
     game.setUpNewDeck();
+    game.deal(2);
     Deck deck = game.getDeck();
 
     System.out.println("Deck:");
@@ -14,6 +15,19 @@ public class Runner {
       System.out.println(card.getRank() + " of " + card.getSuit());
     }
     System.out.println();
+
+    System.out.println("App hand:");
+    for (Card card : game.getAppPlayer().getHand().getSet()) {
+        System.out.println(card.getRank() + " of " + card.getSuit());
+    }
+    System.out.println();
+    
+    System.out.println("User hand:");
+    for (Card card : game.getUserPlayer().getHand().getSet()) {
+        System.out.println(card.getRank() + " of " + card.getSuit());
+    }
+
+    
     
     // deck.cut();
     // System.out.println("Cut deck:");
