@@ -105,6 +105,23 @@ public class PontoonGameTest {
     assertEquals(17, game.getUserHandValue());
   }
 
+  @Test
+  public void canGetAppHandSize() {
+    game.getAppPlayer().getHand().addCard(aceOfDiamonds);
+    game.getAppPlayer().getHand().addCard(sixOfSpades);
+    game.getAppPlayer().getHand().addCard(aceOfDiamonds);
+    game.getAppPlayer().getHand().addCard(sixOfSpades);
+    assertEquals(4, game.getAppHandSize());
+  }
+
+  @Test
+  public void canGetUserHandSize() {
+    game.getUserPlayer().getHand().addCard(aceOfDiamonds);
+    game.getUserPlayer().getHand().addCard(sixOfSpades);
+    game.getUserPlayer().getHand().addCard(sixOfSpades);
+    assertEquals(3, game.getUserHandSize());
+  }
+
 
 
 

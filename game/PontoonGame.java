@@ -74,6 +74,18 @@ public class PontoonGame {
     return value;
   }
 
+  public int getAppHandSize() {
+    Hand appHand = this.appPlayer.getHand();
+    int size = appHand.countCards();
+    return size;
+  }
+
+  public int getUserHandSize() {
+    Hand userHand = this.userPlayer.getHand();
+    int size = userHand.countCards();
+    return size;
+  }
+
 
 
   // public int getHandValueForPlayer(int playerIndex) {
