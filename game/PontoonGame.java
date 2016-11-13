@@ -86,14 +86,13 @@ public class PontoonGame {
     return size;
   }
 
+  public void appTwist() {
+    Card twistCard = this.deck.removeFirstCard();
+    Hand appHand = this.appPlayer.getHand();
+    appHand.addCard(twistCard);
+  }
 
 
-  // public int getHandValueForPlayer(int playerIndex) {
-  //   Player player = getPlayer(playerIndex);
-  //   ArrayList<Card> hand = player.getHand().getSetOfCards();
-  //   int value = this.valueType.getHandValue(hand);
-  //   return value;
-  // }
 
   // public void stickOrTwist(int playerIndex, String playerDecision) {
   //   if (playerDecision == "t") {
