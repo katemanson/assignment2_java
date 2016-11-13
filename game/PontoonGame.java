@@ -92,6 +92,12 @@ public class PontoonGame {
     appHand.addCard(twistCard);
   }
 
+  public void userTwist() {
+    Card twistCard = this.deck.removeFirstCard();
+    Hand userHand = this.userPlayer.getHand();
+    userHand.addCard(twistCard);
+  }
+
 
 
   // public void stickOrTwist(int playerIndex, String playerDecision) {

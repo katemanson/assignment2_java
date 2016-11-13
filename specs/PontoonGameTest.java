@@ -131,6 +131,15 @@ public class PontoonGameTest {
     assertEquals(47, game.getDeck().countCards());
   }
 
+  @Test
+  public void userCanTwist() {
+    game.setUpNewDeck();
+    game.deal(2);
+    game.userTwist();
+    assertEquals(3, game.getUserHandSize());
+    assertEquals(47, game.getDeck().countCards());
+  }
+
 
 
 
