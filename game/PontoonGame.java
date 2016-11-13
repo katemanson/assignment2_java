@@ -98,6 +98,20 @@ public class PontoonGame {
     userHand.addCard(twistCard);
   }
 
+  public boolean checkIfAppBust() {
+    Hand appHand = this.appPlayer.getHand();
+    boolean bust = this.handValuer.checkIfBust(appHand);
+    return bust;
+  }
+
+  public boolean checkIfUserBust() {
+    Hand userHand = this.userPlayer.getHand();
+    boolean bust = this.handValuer.checkIfBust(userHand);
+    return bust;
+  }
+
+
+
 
 
   // public void stickOrTwist(int playerIndex, String playerDecision) {

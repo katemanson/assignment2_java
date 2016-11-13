@@ -140,6 +140,35 @@ public class PontoonGameTest {
     assertEquals(47, game.getDeck().countCards());
   }
 
+  @Test
+  public void canCheckIfAppBust_NotBust() {
+    game.getAppPlayer().getHand().addCard(kingOfClubs);
+    game.getAppPlayer().getHand().addCard(aceOfDiamonds);
+    assertEquals(false, game.checkIfAppBust());
+  }
+
+  @Test
+  public void canCheckIfAppBust_Bust() {
+    game.getAppPlayer().getHand().addCard(sevenOfSpades);
+    game.getAppPlayer().getHand().addCard(sixOfSpades);
+    game.getAppPlayer().getHand().addCard(aceOfDiamonds);
+    assertEquals(true, game.checkIfAppBust());
+  }
+
+  @Test
+  public void canCheckIfUserBust_NotBust() {
+    game.getUserPlayer().getHand().addCard(kingOfClubs);
+    game.getUserPlayer().getHand().addCard(aceOfDiamonds);
+    assertEquals(false, game.checkIfUserBust());
+  }
+
+  @Test
+  public void canCheckIfUserBust_Bust() {
+    game.getUserPlayer().getHand().addCard(sevenOfSpades);
+    game.getUserPlayer().getHand().addCard(sixOfSpades);
+    game.getUserPlayer().getHand().addCard(aceOfDiamonds);
+    assertEquals(true, game.checkIfUserBust());
+  }
 
 
 
