@@ -110,6 +110,20 @@ public class PontoonGame {
     return bust;
   }
 
+  // FCT - Five Card Trick
+  public boolean checkForAppFCT() {
+    Hand appHand = this.appPlayer.getHand();
+    boolean fiveCardTrick = this.handValuer.checkForFiveCardTrick(appHand);
+    return fiveCardTrick;
+  }
+
+  // FCT - Five Card Trick
+  public boolean checkForUserFCT() {
+    Hand userHand = this.userPlayer.getHand();
+    boolean fiveCardTrick = this.handValuer.checkForFiveCardTrick(userHand);
+    return fiveCardTrick;
+  }
+
 
 
 

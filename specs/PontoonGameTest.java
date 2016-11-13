@@ -170,6 +170,45 @@ public class PontoonGameTest {
     assertEquals(true, game.checkIfUserBust());
   }
 
+  @Test
+  public void canCheckForAppFCT_FCT() {
+    game.getAppPlayer().getHand().addCard(sevenOfSpades);
+    game.getAppPlayer().getHand().addCard(twoOfHearts);
+    game.getAppPlayer().getHand().addCard(sevenOfSpades);
+    game.getAppPlayer().getHand().addCard(twoOfHearts);
+    game.getAppPlayer().getHand().addCard(twoOfHearts);
+    assertEquals(true, game.checkForAppFCT());
+  }
+
+  @Test
+  public void canCheckForAppFCT_NoFCT() {
+    game.getAppPlayer().getHand().addCard(sevenOfSpades);
+    game.getAppPlayer().getHand().addCard(sixOfSpades);
+    game.getAppPlayer().getHand().addCard(aceOfDiamonds);
+    game.getAppPlayer().getHand().addCard(sevenOfSpades);
+    game.getAppPlayer().getHand().addCard(sixOfSpades);
+    assertEquals(false, game.checkForAppFCT());
+  }
+
+  @Test
+  public void canCheckForUserFCT_FCT() {
+    game.getUserPlayer().getHand().addCard(sevenOfSpades);
+    game.getUserPlayer().getHand().addCard(twoOfHearts);
+    game.getUserPlayer().getHand().addCard(sevenOfSpades);
+    game.getUserPlayer().getHand().addCard(twoOfHearts);
+    game.getUserPlayer().getHand().addCard(twoOfHearts);
+    assertEquals(true, game.checkForUserFCT());
+  }
+
+  @Test
+  public void canCheckForUserFCT_NoFCT() {
+    game.getUserPlayer().getHand().addCard(sevenOfSpades);
+    game.getUserPlayer().getHand().addCard(sixOfSpades);
+    game.getUserPlayer().getHand().addCard(aceOfDiamonds);
+    game.getUserPlayer().getHand().addCard(sevenOfSpades);
+    game.getUserPlayer().getHand().addCard(sixOfSpades);
+    assertEquals(false, game.checkForUserFCT());
+  }
 
 
 
