@@ -18,6 +18,12 @@ public class PlayerTest {
   }
 
   @Test
+  public void canSetName() {
+    player.setName("NewName");
+    assertEquals("NewName", player.getName());
+  }
+
+  @Test
   public void canGetHand() {
     assertEquals(0, player.getHand().countCards());
   }
