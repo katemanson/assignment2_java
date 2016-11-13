@@ -56,6 +56,12 @@ public class PontoonGame {
     return pontoon;
   }
 
+  public boolean checkForUserPontoon() {
+    Hand userHand = this.userPlayer.getHand();
+    boolean pontoon = this.handValuer.checkForPontoon(userHand);
+    return pontoon;
+  }
+
 
 
   // public int getHandValueForPlayer(int playerIndex) {

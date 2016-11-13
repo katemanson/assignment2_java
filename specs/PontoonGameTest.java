@@ -64,19 +64,34 @@ public class PontoonGameTest {
   }
 
   @Test
-  public void canCheckAppForPontoon_Pontoon() {
+  public void canCheckForAppPontoon_Pontoon() {
     game.getAppPlayer().getHand().addCard(kingOfClubs);
     game.getAppPlayer().getHand().addCard(aceOfDiamonds);
     assertEquals(true, game.checkForAppPontoon());
   }
 
   @Test
-  public void canCheckAppForPontoon_NoPontoon() {
+  public void canCheckForAppPontoon_NoPontoon() {
     game.getAppPlayer().getHand().addCard(sevenOfSpades);
     game.getAppPlayer().getHand().addCard(sixOfSpades);
     assertEquals(false, game.checkForAppPontoon());
   }
 
+  @Test
+  public void canCheckForUserPontoon_Pontoon() {
+    game.getUserPlayer().getHand().addCard(kingOfClubs);
+    game.getUserPlayer().getHand().addCard(aceOfDiamonds);
+    assertEquals(true, game.checkForUserPontoon());
+  }
+
+  @Test
+  public void canCheckForUserPontoon_NoPontoon() {
+    game.getUserPlayer().getHand().addCard(sevenOfSpades);
+    game.getUserPlayer().getHand().addCard(sixOfSpades);
+    assertEquals(false, game.checkForUserPontoon());
+  }
+
+  
 
 
 
