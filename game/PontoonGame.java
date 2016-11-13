@@ -130,10 +130,10 @@ public class PontoonGame {
 
   public String playInitialCheck() {
 
-    boolean appPontoon = checkForAppPontoon();
-    boolean userPontoon = checkForUserPontoon();
     int appValue = getAppHandValue();
     int userValue = getUserHandValue();
+    boolean appPontoon = checkForAppPontoon();
+    boolean userPontoon = checkForUserPontoon();
     
     String resultBothPontoon = "You both have Pontoon. \nDealer wins.";
     String resultAppPontoon = "You have " + userValue + ". \nDealer has Pontoon. \nDealer wins.";
@@ -149,6 +149,36 @@ public class PontoonGame {
       return resultUserPontoon;
     }
     return null;
+  }
+
+  public String checkUserHand() {
+
+    int handSize = getUserHandSize();
+    int handValue = getUserHandValue();
+    boolean userBust = checkIfUserBust();
+    // FCT - Five Card Trick
+    boolean userFCT = checkForUserFCT(); 
+
+    String haveToTwist = "Since your hand is worth less than 15, you have to twist."; 
+    String stickOrTwist = "Stick or twist?";
+    String resultUserBust = "You're bust. \nDealer wins.";
+    String outcomeUserFCT = "You have a Five Card Trick! \nDealer's turn!";
+
+    if ( handSize < 5 && handValue < 15 ) {
+      return haveToTwist;
+    }
+    else if ( handSize >= 5 ) {
+      if ( handValue > 21 ) {
+        return resultUserBust;
+      }
+      else if ( handValue <= 21 ) {
+        return outcomeUserFCT;
+      }
+    }
+    else if ( handValue >= 15 && handValue <= 21 ) {
+      return stickOrTwist;
+    }
+    return resultUserBust;
   }
 
 

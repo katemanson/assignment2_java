@@ -219,25 +219,75 @@ public class PontoonGameTest {
     assertEquals("You both have Pontoon. \nDealer wins.", game.playInitialCheck());
   }
 
-  // @Test
-  // public void testInitialCheck_AppPontoon() {
-  //   game.getAppPlayer().getHand().addCard(aceOfDiamonds);
-  //   game.getAppPlayer().getHand().addCard(kingOfClubs);
-  //   game.getUserPlayer().getHand().addCard(kingOfClubs);
-  //   game.getUserPlayer().getHand().addCard(sevenOfSpades);
-  //   assertEquals("You have 17. \nDealer has Pontoon. \nDealer wins.", game.playInitialCheck());
-  // }
+  @Test
+  public void testInitialCheck_AppPontoon() {
+    game.getAppPlayer().getHand().addCard(aceOfDiamonds);
+    game.getAppPlayer().getHand().addCard(kingOfClubs);
+    game.getUserPlayer().getHand().addCard(kingOfClubs);
+    game.getUserPlayer().getHand().addCard(sevenOfSpades);
+    assertEquals("You have 17. \nDealer has Pontoon. \nDealer wins.", game.playInitialCheck());
+  }
 
-  // @Test
-  // public void testInitialCheck_UserPontoon() {
+  @Test
+  public void testInitialCheck_UserPontoon() {
+    game.getAppPlayer().getHand().addCard(sixOfSpades);
+    game.getAppPlayer().getHand().addCard(kingOfClubs);
+    game.getUserPlayer().getHand().addCard(kingOfClubs);
+    game.getUserPlayer().getHand().addCard(aceOfDiamonds);
+    assertEquals("You have Pontoon. \nDealer has 16. \nYou win!", game.playInitialCheck());
+  }
 
-  // }
+  @Test
+  public void testInitialCheck_NeitherPontoon() {
+    game.getAppPlayer().getHand().addCard(sixOfSpades);
+    game.getAppPlayer().getHand().addCard(kingOfClubs);
+    game.getUserPlayer().getHand().addCard(sevenOfSpades);
+    game.getUserPlayer().getHand().addCard(aceOfDiamonds);
+    assertEquals(null, game.playInitialCheck());
+  }
 
-  // @Test
-  // public void testInitialCheck_NeitherPontoon() {
+  @Test
+  public void testCheckUserHand_HaveToTwist() {
+    game.getUserPlayer().getHand().addCard(twoOfHearts);
+    game.getUserPlayer().getHand().addCard(kingOfClubs);
+    assertEquals("Since your hand is worth less than 15, you have to twist.", game.checkUserHand());
+  }
 
-  // }
+  @Test
+  public void testCheckUserHand_BustInFive() {
+    game.getUserPlayer().getHand().addCard(kingOfClubs);
+    game.getUserPlayer().getHand().addCard(kingOfClubs);
+    game.getUserPlayer().getHand().addCard(kingOfClubs);
+    game.getUserPlayer().getHand().addCard(kingOfClubs);
+    game.getUserPlayer().getHand().addCard(kingOfClubs);
+    assertEquals("You're bust. \nDealer wins.", game.checkUserHand());
+  }
 
+  @Test
+  public void testCheckUserHand_FiveCardTrick() {
+    game.getUserPlayer().getHand().addCard(twoOfHearts);
+    game.getUserPlayer().getHand().addCard(twoOfHearts);
+    game.getUserPlayer().getHand().addCard(twoOfHearts);
+    game.getUserPlayer().getHand().addCard(twoOfHearts);
+    game.getUserPlayer().getHand().addCard(twoOfHearts);
+    assertEquals("You have a Five Card Trick! \nDealer's turn!", game.checkUserHand());
+  }
+
+  @Test
+  public void testCheckUserHand_StickOrTwist() {
+    game.getUserPlayer().getHand().addCard(sixOfSpades);
+    game.getUserPlayer().getHand().addCard(sevenOfSpades);
+    game.getUserPlayer().getHand().addCard(twoOfHearts);
+    assertEquals("Stick or twist?", game.checkUserHand());
+  }
+
+  @Test
+  public void testCheckUserHand_BustInFewerThanFive() {
+    game.getUserPlayer().getHand().addCard(kingOfClubs);
+    game.getUserPlayer().getHand().addCard(kingOfClubs);
+    game.getUserPlayer().getHand().addCard(kingOfClubs);
+    assertEquals("You're bust. \nDealer wins.", game.checkUserHand());
+  }
 
 
 
