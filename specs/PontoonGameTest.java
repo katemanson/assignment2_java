@@ -91,7 +91,19 @@ public class PontoonGameTest {
     assertEquals(false, game.checkForUserPontoon());
   }
 
-  
+  @Test
+  public void canGetAppHandValue() {
+    game.getAppPlayer().getHand().addCard(sevenOfSpades);
+    game.getAppPlayer().getHand().addCard(sixOfSpades);
+    assertEquals(13, game.getAppHandValue());
+  }
+
+  @Test
+  public void canGetUserHandValue() {
+    game.getUserPlayer().getHand().addCard(aceOfDiamonds);
+    game.getUserPlayer().getHand().addCard(sixOfSpades);
+    assertEquals(17, game.getUserHandValue());
+  }
 
 
 

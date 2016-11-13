@@ -62,6 +62,18 @@ public class PontoonGame {
     return pontoon;
   }
 
+  public int getAppHandValue() {
+    Hand appHand = this.appPlayer.getHand();
+    int value = this.handValuer.getHandValue(appHand);
+    return value;
+  }
+
+  public int getUserHandValue() {
+    Hand userHand = this.userPlayer.getHand();
+    int value = this.handValuer.getHandValue(userHand);
+    return value;
+  }
+
 
 
   // public int getHandValueForPlayer(int playerIndex) {
