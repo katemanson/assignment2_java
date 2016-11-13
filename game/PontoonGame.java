@@ -128,7 +128,7 @@ public class PontoonGame {
     deal(2);
   }
 
-  public String playInitialCheck() {
+  public String checkInitialDeal() {
 
     int appValue = getAppHandValue();
     int userValue = getUserHandValue();
@@ -215,7 +215,41 @@ public class PontoonGame {
     return resultAppBust;
   }
 
-  
+  public String compareHands() {
 
+    int appValue = getAppHandValue();
+    int userValue = getUserHandValue();
+    boolean appBust = checkIfAppBust();
+    boolean userBust = checkIfUserBust();
+    boolean appFCT = checkForAppFCT(); 
+    boolean userFCT = checkForUserFCT(); 
+    
+    String resultBothFCT = "You both have a Five Card Trick. \nDealer wins this hand.";
+    String resultAppFCT = "You have " + userValue + ". \nDealer has a Five Card Trick. \nDealer wins this hand.";
+    String resultUserFCT = "You have a Five Card Trick. \nDealer has " + appValue + ". \nYou win this hand!";
+    String resultEqualValues = "You have " + userValue + ". \nDealer has the same. \nDealer wins this hand.";
+    String resultAppHigher = "You have " + userValue + ". \nDealer has " + appValue + ". \nDealer wins this hand.";
+    String resultUserHigher = "You have " + userValue + ". \nDealer has " + appValue + ". \nYou win this hand!";
+
+    if ( appFCT && userFCT ) {
+      return resultBothFCT;
+    }
+    else if ( appFCT && !userFCT ) {
+      return resultAppFCT;
+    }
+    else if ( !appFCT && userFCT ) {
+      return resultUserFCT;
+    }
+    else if ( appValue == userValue ) {
+      return resultEqualValues;
+    }
+    else if ( appValue > userValue ) {
+      return resultAppHigher;
+    }
+    else if ( appValue < userValue ) {
+      return resultUserHigher;
+    }
+    return null;
+  }
 
 }

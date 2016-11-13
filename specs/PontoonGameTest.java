@@ -211,39 +211,39 @@ public class PontoonGameTest {
   }
 
   @Test
-  public void testInitialCheck_BothPontoon() {
+  public void testCheckInitialDeal_BothPontoon() {
     game.getAppPlayer().getHand().addCard(aceOfDiamonds);
     game.getAppPlayer().getHand().addCard(kingOfClubs);
     game.getUserPlayer().getHand().addCard(aceOfDiamonds);
     game.getUserPlayer().getHand().addCard(kingOfClubs);
-    assertEquals("You both have Pontoon. \nDealer wins.", game.playInitialCheck());
+    assertEquals("You both have Pontoon. \nDealer wins.", game.checkInitialDeal());
   }
 
   @Test
-  public void testInitialCheck_AppPontoon() {
+  public void testCheckInitialDeal_AppPontoon() {
     game.getAppPlayer().getHand().addCard(aceOfDiamonds);
     game.getAppPlayer().getHand().addCard(kingOfClubs);
     game.getUserPlayer().getHand().addCard(kingOfClubs);
     game.getUserPlayer().getHand().addCard(sevenOfSpades);
-    assertEquals("You have 17. \nDealer has Pontoon. \nDealer wins.", game.playInitialCheck());
+    assertEquals("You have 17. \nDealer has Pontoon. \nDealer wins.", game.checkInitialDeal());
   }
 
   @Test
-  public void testInitialCheck_UserPontoon() {
+  public void testCheckInitialDeal_UserPontoon() {
     game.getAppPlayer().getHand().addCard(sixOfSpades);
     game.getAppPlayer().getHand().addCard(kingOfClubs);
     game.getUserPlayer().getHand().addCard(kingOfClubs);
     game.getUserPlayer().getHand().addCard(aceOfDiamonds);
-    assertEquals("You have Pontoon. \nDealer has 16. \nYou win!", game.playInitialCheck());
+    assertEquals("You have Pontoon. \nDealer has 16. \nYou win!", game.checkInitialDeal());
   }
 
   @Test
-  public void testInitialCheck_NeitherPontoon() {
+  public void testCheckInitialDeal_NeitherPontoon() {
     game.getAppPlayer().getHand().addCard(sixOfSpades);
     game.getAppPlayer().getHand().addCard(kingOfClubs);
     game.getUserPlayer().getHand().addCard(sevenOfSpades);
     game.getUserPlayer().getHand().addCard(aceOfDiamonds);
-    assertEquals(null, game.playInitialCheck());
+    assertEquals(null, game.checkInitialDeal());
   }
 
   @Test
@@ -339,6 +339,81 @@ public class PontoonGameTest {
     game.getAppPlayer().getHand().addCard(kingOfClubs);
     assertEquals("Dealer is bust! \nYou win this hand.", game.checkAppHand());
   }
+
+  @Test
+  public void testCompareHands_AppFCT() {
+    game.getAppPlayer().getHand().addCard(twoOfHearts);
+    game.getAppPlayer().getHand().addCard(twoOfHearts);
+    game.getAppPlayer().getHand().addCard(twoOfHearts);
+    game.getAppPlayer().getHand().addCard(twoOfHearts);
+    game.getAppPlayer().getHand().addCard(twoOfHearts);
+    game.getUserPlayer().getHand().addCard(sixOfSpades);
+    game.getUserPlayer().getHand().addCard(sixOfSpades);
+    game.getUserPlayer().getHand().addCard(sixOfSpades);
+    assertEquals("You have 18. \nDealer has a Five Card Trick. \nDealer wins this hand.", game.compareHands());
+  }
+
+  @Test
+  public void testCompareHands_BothFCT() {
+    game.getAppPlayer().getHand().addCard(twoOfHearts);
+    game.getAppPlayer().getHand().addCard(twoOfHearts);
+    game.getAppPlayer().getHand().addCard(twoOfHearts);
+    game.getAppPlayer().getHand().addCard(twoOfHearts);
+    game.getAppPlayer().getHand().addCard(twoOfHearts);
+    game.getUserPlayer().getHand().addCard(twoOfHearts);
+    game.getUserPlayer().getHand().addCard(twoOfHearts);
+    game.getUserPlayer().getHand().addCard(twoOfHearts);
+    game.getUserPlayer().getHand().addCard(twoOfHearts);
+    game.getUserPlayer().getHand().addCard(twoOfHearts);
+    assertEquals("You both have a Five Card Trick. \nDealer wins this hand.", game.compareHands());
+  }
+
+  @Test
+  public void testCompareHands_UserFCT() {
+    game.getUserPlayer().getHand().addCard(twoOfHearts);
+    game.getUserPlayer().getHand().addCard(twoOfHearts);
+    game.getUserPlayer().getHand().addCard(twoOfHearts);
+    game.getUserPlayer().getHand().addCard(twoOfHearts);
+    game.getUserPlayer().getHand().addCard(twoOfHearts);
+    game.getAppPlayer().getHand().addCard(sixOfSpades);
+    game.getAppPlayer().getHand().addCard(sixOfSpades);
+    game.getAppPlayer().getHand().addCard(sixOfSpades);
+    assertEquals("You have a Five Card Trick. \nDealer has 18. \nYou win this hand!", game.compareHands());
+
+  }
+
+  @Test
+  public void testCompareHands_SameValue() {
+    game.getAppPlayer().getHand().addCard(twoOfHearts);
+    game.getAppPlayer().getHand().addCard(sixOfSpades);
+    game.getAppPlayer().getHand().addCard(sevenOfSpades);
+    game.getUserPlayer().getHand().addCard(twoOfHearts);
+    game.getUserPlayer().getHand().addCard(sixOfSpades);
+    game.getUserPlayer().getHand().addCard(sevenOfSpades);
+    assertEquals("You have 15. \nDealer has the same. \nDealer wins this hand.", game.compareHands());
+  }
+
+  @Test
+  public void testCompareHands_AppHigher() {
+    game.getAppPlayer().getHand().addCard(twoOfHearts);
+    game.getAppPlayer().getHand().addCard(sixOfSpades);
+    game.getAppPlayer().getHand().addCard(sevenOfSpades);
+    game.getUserPlayer().getHand().addCard(sixOfSpades);
+    game.getUserPlayer().getHand().addCard(sevenOfSpades);
+    assertEquals("You have 13. \nDealer has 15. \nDealer wins this hand.", game.compareHands());
+  }
+
+  @Test
+  public void testCompareHands_UserHigher() {
+    game.getUserPlayer().getHand().addCard(twoOfHearts);
+    game.getUserPlayer().getHand().addCard(sixOfSpades);
+    game.getUserPlayer().getHand().addCard(sevenOfSpades);
+    game.getAppPlayer().getHand().addCard(sixOfSpades);
+    game.getAppPlayer().getHand().addCard(sevenOfSpades);
+    assertEquals("You have 15. \nDealer has 13. \nYou win this hand!", game.compareHands());
+
+  }
+
 
 
 
