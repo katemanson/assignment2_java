@@ -21,7 +21,7 @@ public class SetOfCards {
     return this.set.size();
   }
 
-  public void addCardsFromAnotherSet(SetOfCards otherSet) {
+  public void addCardsFrom(SetOfCards otherSet) {
     ArrayList<Card> cardsFromOtherSet = otherSet.getSet();
     this.set.addAll(cardsFromOtherSet);
   }
@@ -52,6 +52,10 @@ public class SetOfCards {
 
   public Card removeFirstCard() {
     return this.set.remove(0);
+  }
+
+  public void removeAllCards() {
+    this.set.clear();
   }
 
 }

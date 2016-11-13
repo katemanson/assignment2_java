@@ -48,7 +48,7 @@ public class SetOfCardsTest {
     populatedSet.addCard(queenOfSpades);
     populatedSet.addCard(threeOfClubs);
     assertEquals(5, populatedSet.countCards());
-    set.addCardsFromAnotherSet(populatedSet);
+    set.addCardsFrom(populatedSet);
     assertEquals(5, set.countCards());
   }
 
@@ -106,6 +106,19 @@ public class SetOfCardsTest {
     assertEquals(4, populatedSet.countCards());
     assertEquals(Suit.HEARTS, card.getSuit());
     assertEquals(Rank.ACE, card.getRank());
+  }
+
+  @Test
+  public void canRemoveAllCards() {
+    SetOfCards populatedSet = new SetOfCards();
+    populatedSet.addCard(aceOfHearts);
+    populatedSet.addCard(nineOfClubs);
+    populatedSet.addCard(tenOfDiamonds);
+    populatedSet.addCard(queenOfSpades);
+    populatedSet.addCard(threeOfClubs);
+    assertEquals(5, populatedSet.countCards());
+    populatedSet.removeAllCards();
+    assertEquals(0, populatedSet.countCards());
   }
 
 }

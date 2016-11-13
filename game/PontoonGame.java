@@ -38,6 +38,19 @@ public class PontoonGame {
     this.deck.cut();
   }
 
+  public void setUpExistingDeck() {
+
+    // After a hand containing a Pontoon, new hand uses existing deck, with cards played in previous hand moved to bottom
+    Hand appHand = this.appPlayer.getHand();
+    Hand userHand = this.userPlayer.getHand();
+
+    this.deck.addCardsFrom(appHand);
+    this.deck.addCardsFrom(userHand);
+
+    appHand.removeAllCards();
+    userHand.removeAllCards();
+  }
+
   public void deal(int numberOfCards) {
     List<Player> playerList = new ArrayList<Player>();
     playerList.add(this.appPlayer);
