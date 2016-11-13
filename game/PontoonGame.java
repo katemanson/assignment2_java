@@ -161,8 +161,8 @@ public class PontoonGame {
 
     String haveToTwist = "Since your hand is worth less than 15, you have to twist."; 
     String stickOrTwist = "Stick or twist?";
-    String resultUserBust = "You're bust. \nDealer wins.";
-    String outcomeUserFCT = "You have a Five Card Trick! \nDealer's turn!";
+    String resultUserBust = "You're bust. \nDealer wins this hand.";
+    String outcomeUserFCT = "You have a Five Card Trick! \nDealer's turn, now...";
 
     if ( handSize < 5 && handValue < 15 ) {
       return haveToTwist;
@@ -181,7 +181,41 @@ public class PontoonGame {
     return resultUserBust;
   }
 
+  public String checkAppHand() {
 
+    int handSize = getAppHandSize();
+    int handValue = getAppHandValue();
+    boolean appBust = checkIfAppBust();
+    // FCT - Five Card Trick
+    boolean appFCT = checkForAppFCT(); 
+
+    String haveToTwist = "Since their hand is worth less than 15, Dealer must twist..."; 
+    String resultAppBust = "Dealer is bust! \nYou win this hand.";
+    String outcomeAppFCT = "Dealer has a Five Card Trick.";
+    String outcomeTwist = "Dealer twists...";
+    String outcomeStick = "Dealer sticks...";
+
+    if ( handSize < 5 && handValue < 15 ) {
+      return haveToTwist;
+    }
+    else if ( handSize >= 5 ) {
+      if ( handValue > 21 ) {
+        return resultAppBust;
+      }
+      else if ( handValue <= 21 ) {
+        return outcomeAppFCT;
+      }
+    }
+    else if ( handValue == 15 || handValue == 16 ) {
+      return outcomeTwist;
+    }
+    else if ( handValue >= 17 && handValue <= 21 ) {
+      return outcomeStick;
+    }
+    return resultAppBust;
+  }
+
+  
 
 
 }

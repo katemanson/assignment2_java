@@ -260,7 +260,7 @@ public class PontoonGameTest {
     game.getUserPlayer().getHand().addCard(kingOfClubs);
     game.getUserPlayer().getHand().addCard(kingOfClubs);
     game.getUserPlayer().getHand().addCard(kingOfClubs);
-    assertEquals("You're bust. \nDealer wins.", game.checkUserHand());
+    assertEquals("You're bust. \nDealer wins this hand.", game.checkUserHand());
   }
 
   @Test
@@ -270,7 +270,7 @@ public class PontoonGameTest {
     game.getUserPlayer().getHand().addCard(twoOfHearts);
     game.getUserPlayer().getHand().addCard(twoOfHearts);
     game.getUserPlayer().getHand().addCard(twoOfHearts);
-    assertEquals("You have a Five Card Trick! \nDealer's turn!", game.checkUserHand());
+    assertEquals("You have a Five Card Trick! \nDealer's turn, now...", game.checkUserHand());
   }
 
   @Test
@@ -286,9 +286,59 @@ public class PontoonGameTest {
     game.getUserPlayer().getHand().addCard(kingOfClubs);
     game.getUserPlayer().getHand().addCard(kingOfClubs);
     game.getUserPlayer().getHand().addCard(kingOfClubs);
-    assertEquals("You're bust. \nDealer wins.", game.checkUserHand());
+    assertEquals("You're bust. \nDealer wins this hand.", game.checkUserHand());
   }
 
+  @Test
+  public void testCheckAppHand_HaveToTwist() {
+    game.getAppPlayer().getHand().addCard(twoOfHearts);
+    game.getAppPlayer().getHand().addCard(kingOfClubs);
+    assertEquals("Since their hand is worth less than 15, Dealer must twist...", game.checkAppHand());
+  }
+
+  @Test
+  public void testCheckAppHand_BustInFive() {
+    game.getAppPlayer().getHand().addCard(kingOfClubs);
+    game.getAppPlayer().getHand().addCard(kingOfClubs);
+    game.getAppPlayer().getHand().addCard(kingOfClubs);
+    game.getAppPlayer().getHand().addCard(kingOfClubs);
+    game.getAppPlayer().getHand().addCard(kingOfClubs);
+    assertEquals("Dealer is bust! \nYou win this hand.", game.checkAppHand());
+  }
+
+  @Test
+  public void testCheckAppHand_FiveCardTrick() {
+    game.getAppPlayer().getHand().addCard(twoOfHearts);
+    game.getAppPlayer().getHand().addCard(twoOfHearts);
+    game.getAppPlayer().getHand().addCard(twoOfHearts);
+    game.getAppPlayer().getHand().addCard(twoOfHearts);
+    game.getAppPlayer().getHand().addCard(twoOfHearts);
+    assertEquals("Dealer has a Five Card Trick.", game.checkAppHand());
+  }
+
+  @Test
+  public void testCheckAppHand_Twist() {
+    game.getAppPlayer().getHand().addCard(sixOfSpades);
+    game.getAppPlayer().getHand().addCard(sevenOfSpades);
+    game.getAppPlayer().getHand().addCard(twoOfHearts);
+    assertEquals("Dealer twists...", game.checkAppHand());
+  }
+
+  @Test
+  public void testCheckAppHand_Stick() {
+    game.getAppPlayer().getHand().addCard(kingOfClubs);
+    game.getAppPlayer().getHand().addCard(sixOfSpades);
+    game.getAppPlayer().getHand().addCard(twoOfHearts);
+    assertEquals("Dealer sticks...", game.checkAppHand());
+  }
+
+  @Test
+  public void testCheckAppHand_BustInFewerThanFive() {
+    game.getAppPlayer().getHand().addCard(kingOfClubs);
+    game.getAppPlayer().getHand().addCard(kingOfClubs);
+    game.getAppPlayer().getHand().addCard(kingOfClubs);
+    assertEquals("Dealer is bust! \nYou win this hand.", game.checkAppHand());
+  }
 
 
 
